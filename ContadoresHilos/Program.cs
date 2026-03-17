@@ -4,11 +4,11 @@ using System.Threading;
 
 class Contador
 {
-    public int Id { get; set; }
-    public int Valor { get; set; }
-    public int Intervalo { get; set; }
-    public bool Activo { get; set; }
+    public int Id { get; private set; }
+    public int Valor { get; private set; }
+    public int Intervalo { get; private set; }
 
+    private bool activo;
     private Thread hilo;
 
     public Contador(int id, int intervalo)
@@ -16,43 +16,54 @@ class Contador
         Id = id;
         Intervalo = intervalo;
         Valor = 0;
-        Activo = false;
+        activo = false;
     }
 
     public void Iniciar()
     {
-        if (Activo) return;
+        if (activo)
+        {
+            Console.WriteLine($"El contador {Id} ya está en ejecución.");
+            return;
+        }
 
-        Activo = true;
+        activo = true;
         hilo = new Thread(Ejecutar);
+        hilo.IsBackground = true;
         hilo.Start();
     }
 
     private void Ejecutar()
     {
-        while (Activo)
+        while (activo)
         {
             Valor++;
-            Console.WriteLine($"[Contador {Id}] Valor: {Valor}");
+            Console.WriteLine($"[Contador {Id}] -> {Valor}");
             Thread.Sleep(Intervalo);
         }
     }
 
     public void Detener()
     {
-        Activo = false;
+        if (!activo)
+        {
+            Console.WriteLine($"El contador {Id} ya está detenido.");
+            return;
+        }
+
+        activo = false;
     }
 
     public string Estado()
     {
-        return $"Contador {Id} -> Valor: {Valor}, Estado: {(Activo ? "Activo" : "Detenido")}";
+        return $"Contador {Id}: Valor={Valor}, Estado={(activo ? "Activo" : "Detenido")}";
     }
 }
 
 class Program
 {
     static List<Contador> contadores = new List<Contador>();
-    static int contadorId = 1;
+    static int siguienteId = 1;
 
     static void Main(string[] args)
     {
@@ -65,7 +76,7 @@ class Program
             Console.WriteLine("2. Detener contador");
             Console.WriteLine("3. Mostrar estado");
             Console.WriteLine("4. Salir");
-            Console.Write("Opción: ");
+            Console.Write("Seleccione una opción: ");
 
             string opcion = Console.ReadLine();
 
@@ -74,18 +85,22 @@ class Program
                 case "1":
                     IniciarContador();
                     break;
+
                 case "2":
                     DetenerContador();
                     break;
+
                 case "3":
                     MostrarEstado();
                     break;
+
                 case "4":
                     salir = true;
                     DetenerTodos();
                     break;
+
                 default:
-                    Console.WriteLine("Opción inválida");
+                    Console.WriteLine("Opción inválida.");
                     break;
             }
         }
@@ -93,37 +108,51 @@ class Program
 
     static void IniciarContador()
     {
-        Console.Write("Intervalo (ms): ");
-        int intervalo = int.Parse(Console.ReadLine());
+        Console.Write("Ingrese intervalo en milisegundos: ");
+        if (!int.TryParse(Console.ReadLine(), out int intervalo) || intervalo <= 0)
+        {
+            Console.WriteLine("Intervalo inválido.");
+            return;
+        }
 
-        Contador c = new Contador(contadorId++, intervalo);
+        Contador c = new Contador(siguienteId++, intervalo);
         contadores.Add(c);
         c.Iniciar();
 
-        Console.WriteLine("Contador iniciado.");
+        Console.WriteLine($"Contador {c.Id} iniciado.");
     }
 
     static void DetenerContador()
     {
-        Console.Write("ID del contador: ");
-        int id = int.Parse(Console.ReadLine());
+        Console.Write("Ingrese ID del contador: ");
+        if (!int.TryParse(Console.ReadLine(), out int id))
+        {
+            Console.WriteLine("ID inválido.");
+            return;
+        }
 
         foreach (var c in contadores)
         {
             if (c.Id == id)
             {
                 c.Detener();
-                Console.WriteLine("Contador detenido.");
                 return;
             }
         }
 
-        Console.WriteLine("No encontrado.");
+        Console.WriteLine("Contador no encontrado.");
     }
 
     static void MostrarEstado()
     {
-        Console.WriteLine("\n--- ESTADO ---");
+        Console.WriteLine("\n--- ESTADO DE CONTADORES ---");
+
+        if (contadores.Count == 0)
+        {
+            Console.WriteLine("No hay contadores.");
+            return;
+        }
+
         foreach (var c in contadores)
         {
             Console.WriteLine(c.Estado());
@@ -136,6 +165,7 @@ class Program
         {
             c.Detener();
         }
-        Console.WriteLine("Todos los contadores detenidos.");
+
+        Console.WriteLine("Todos los contadores han sido detenidos.");
     }
 }

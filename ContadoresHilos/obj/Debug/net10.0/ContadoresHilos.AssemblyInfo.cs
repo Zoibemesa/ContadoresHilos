@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContadoresHilos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+04edfcb827884e988c2da7d6e7fce5ec84a61b7a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+74628c813dd9dd0ada27c61906e3cd13ba4cf065")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContadoresHilos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContadoresHilos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
