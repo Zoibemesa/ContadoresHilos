@@ -1,0 +1,15 @@
+/workspaces/ContadoresHilos/ContadoresHilos/bin/Debug/net10.0/ContadoresHilos
+/workspaces/ContadoresHilos/ContadoresHilos/bin/Debug/net10.0/ContadoresHilos.deps.json
+/workspaces/ContadoresHilos/ContadoresHilos/bin/Debug/net10.0/ContadoresHilos.runtimeconfig.json
+/workspaces/ContadoresHilos/ContadoresHilos/bin/Debug/net10.0/ContadoresHilos.dll
+/workspaces/ContadoresHilos/ContadoresHilos/bin/Debug/net10.0/ContadoresHilos.pdb
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.AssemblyInfoInputs.cache
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.AssemblyInfo.cs
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.csproj.CoreCompileInputs.cache
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.sourcelink.json
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.dll
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/refint/ContadoresHilos.dll
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.pdb
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ContadoresHilos.genruntimeconfig.cache
+/workspaces/ContadoresHilos/ContadoresHilos/obj/Debug/net10.0/ref/ContadoresHilos.dll
